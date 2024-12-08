@@ -1,118 +1,55 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import * as React from 'react';
+import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { IndexPage } from './pages/IndexPage';
+import { LandingScreen } from './pages/LandingScreen';
+import { Login } from './pages/Login';
+import { AdminLogin } from './pages/AdminLogin';
+import { CoachLogin } from './pages/CoachLogin';
+import { CoordinatorLogin } from './pages/CoordinatorLogin';
+import { AdminLandingPage } from './pages/AdminLandingPage';
+import { CoachLandingPage } from './pages/CoachLandingPage';
+import { CoordinatorLandingPage } from './pages/CoordinatorLandingPage';
+import { RepLogin } from './pages/RepLogin';
+import { RepLandingPage } from './pages/RepLandingPage';
+import { NominationCategories } from './pages/NominationCatgories';
+import { NominationForm } from './pages/NominationForm';
+import { TrialsConfirmation } from './pages/TrialsConfirmation';
+// Import your local images
+const backgroundImage = require('./assets/startimg.png'); // Adjust the path as needed
+const UserIcon = require('./assets/user.png'); // Import the home icon
+const CP = require('./assets/iconcp.png'); // Import the home icon
+const loginscreen = require('./assets/loginscreen.png'); // Import the home icon
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+
+
+
+
+const Stack = createNativeStackNavigator();
+const MyStack = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="IndexScreen">
+        <Stack.Screen name="IndexPage" component={IndexPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="LandingScreen" component={LandingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="AdminLogin" component={AdminLogin} options={{ headerShown: false}}/>
+        <Stack.Screen name="CoachLogin" component={CoachLogin} options={{ headerShown: false}}/>
+        <Stack.Screen name="CoordinatorLogin" component={CoordinatorLogin} options={{ headerShown: false}}/>
+        <Stack.Screen name="AdminLandingPage" component={AdminLandingPage} options={{headerShown: false}}/>
+        <Stack.Screen name="CoachLandingPage" component={CoachLandingPage} options={{headerShown: false}}/>
+        <Stack.Screen name="CoordinatorLandingPage" component={CoordinatorLandingPage} options={{headerShown: false}}/>
+        <Stack.Screen name="RepLogin" component={RepLogin} options={{headerShown: false}}/>
+        <Stack.Screen name="RepLandingPage" component={RepLandingPage} options={{headerShown: false}}/>
+        <Stack.Screen name="NominationCategories" component={NominationCategories} options={{headerShown: false}}/>
+        <Stack.Screen name="NominationForm" component={NominationForm} options={{headerShown: false}}/>
+        <Stack.Screen name="TrialsConfirmation" component={TrialsConfirmation} options={{headerShown: false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+};
+export default MyStack;
